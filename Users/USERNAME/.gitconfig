@@ -1,0 +1,18 @@
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[user]
+	name = DEFAULT_USER_NAME
+	email = DEFAULT_USER_EMAIL
+[work]
+	name = WORK_USER_NAME
+	email = WORK_USER_EMAIL
+[personal]
+	name = PERSONAL_USER_NAME
+	email = PERSONAL_USER_EMAIL
+[alias]
+	whoami= !git config --global user.name && git config --global user.email
+	setpersonal= !git config --global user.name \""$(git config personal.name)"\" && git config --global user.email "$(git config personal.email)" && git whoami
+    setwork= !git config --global user.name \""$(git config work.name)"\" && git config --global user.email "$(git config work.email)" && git whoami
